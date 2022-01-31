@@ -1,4 +1,4 @@
-package com.app.kot_workout_app.Activities
+package com.app.kot_workout_app.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Toast
 import com.app.kot_workout_app.R
 import com.app.kot_workout_app.databinding.ActivityBmiactivityBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import java.math.RoundingMode
 import java.math.BigDecimal
 
@@ -21,6 +23,12 @@ class BMIActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBmiactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //ads initialization
+        MobileAds.initialize(this@BMIActivity)
+        //Banner ad request
+        val adReq = AdRequest.Builder().build()
+        binding.adViewBMI.loadAd(adReq)
 
         setSupportActionBar(binding.toolbarBmiActivity)
         val actionbar = supportActionBar

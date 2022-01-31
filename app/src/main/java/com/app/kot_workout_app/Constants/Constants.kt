@@ -1,6 +1,6 @@
-package com.app.kot_workout_app.Constants
+package com.app.kot_workout_app.constants
 
-import com.app.kot_workout_app.Models.ExerciseModel
+import com.app.kot_workout_app.models.ExerciseModel
 import com.app.kot_workout_app.R
 
 class Constants {
@@ -23,7 +23,7 @@ class Constants {
                 R.drawable.highknees, false, false )
             exerciseList.add(highKnees)
 
-           /*val lunges = ExerciseModel(4, "Lunges",
+           val lunges = ExerciseModel(4, "Lunges",
                 R.drawable.lunges, false, false )
             exerciseList.add(lunges)
 
@@ -49,7 +49,7 @@ class Constants {
 
             val bicycleCrunches = ExerciseModel(10, "Bicycle Crunches",
                 R.drawable.bicyclecrunches, false, false )
-            exerciseList.add(bicycleCrunches)*/
+            exerciseList.add(bicycleCrunches)
 
             return exerciseList
         }

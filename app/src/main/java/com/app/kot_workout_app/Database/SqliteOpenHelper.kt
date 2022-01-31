@@ -1,4 +1,4 @@
-package com.app.kot_workout_app.Database
+package com.app.kot_workout_app.database
 
 import android.content.ContentValues
 import android.content.Context
@@ -9,11 +9,11 @@ class SqliteOpenHelper(context: Context, factory: SQLiteDatabase.CursorFactory?)
     SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION){
 
     companion object{
-        private val DATABASE_VERSION = 1
-        private val DATABASE_NAME = "Workoutapp.db"
-        private val TABLE_HISTORY = "history"
-        private val COLUMN_ID = "_id"
-        private val COLUMN_COMPLETED_DATE = "completed_date"
+        private const val DATABASE_VERSION = 1
+        private const val DATABASE_NAME = "Workoutapp.db"
+        private const val TABLE_HISTORY = "history"
+        private const val COLUMN_ID = "_id"
+        private const val COLUMN_COMPLETED_DATE = "completed_date"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {

@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/KOTLIN/KOT_Workout_App/app/src/main/res/drawable/drawable_units_tab_text_color_selector.xml" value="0.1875" />
+        <entry key="..\:/Android/KOTLIN/KOT_Workout_App/app/src/main/res/drawable/item_circular_thin_color_accent_border.xml" value="0.105" />
+        <entry key="..\:/Android/KOTLIN/KOT_Workout_App/app/src/main/res/layout/activity_bmiactivity.xml" value="0.18819655521783182" />
         <entry key="..\:/Android/KOTLIN/KOT_Workout_App/app/src/main/res/layout/activity_exercise.xml" value="0.21875" />
+        <entry key="..\:/Android/KOTLIN/KOT_Workout_App/app/src/main/res/layout/activity_finish.xml" value="0.18819655521783182" />
+        <entry key="..\:/Android/KOTLIN/KOT_Workout_App/app/src/main/res/layout/activity_history.xml" value="0.18819655521783182" />
+        <entry key="..\:/Android/KOTLIN/KOT_Workout_App/app/src/main/res/layout/activity_main.xml" value="0.3555253623188406" />
         <entry key="..\:/Android/KOTLIN/KOT_Workout_App/app/src/main/res/layout/item_exercise_status.xml" value="0.3740942028985507" />
         <entry key="..\:/KOT_Workout_App/app/src/main/res/drawable-v24/drawable_radio_group_levels.xml" value="0.403125" />
         <entry key="..\:/KOT_Workout_App/app/src/main/res/drawable/circular_progress_bar.xml" value="0.403125" />

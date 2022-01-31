@@ -1,4 +1,4 @@
-package com.app.kot_workout_app.Models
+package com.app.kot_workout_app.models
 
 class ExerciseModel (private var id: Int,
                     private  var name: String,

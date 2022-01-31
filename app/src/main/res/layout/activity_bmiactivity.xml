@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".Activities.BMIActivity">
+    tools:context=".activities.BMIActivity">
+
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_bmi_activity"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/white"/>
+
+
 
     <RadioGroup
         android:id="@+id/rgUnits"
@@ -22,11 +37,14 @@
         android:background="@drawable/drawable_radio_group_tab_background"
         android:orientation="horizontal">
 
+
+
         <RadioButton
             android:id="@+id/rbMetricUnits"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/blue_accent"
             android:background="@drawable/drawable_units_tab_selector"
             android:checked="true"
             android:text="@string/metric_units"
@@ -40,6 +58,7 @@
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/blue_accent"
             android:background="@drawable/drawable_units_tab_selector"
             android:checked="false"
             android:text="@string/imperial_units"
@@ -60,12 +79,21 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewBMI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-4193581455913262/4352037347"
+            />
+
         <!--Text Input Layout for Metric Units Weight -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilMetricUnitWeight"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etMetricUnitWeight"
@@ -209,10 +237,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginTop="35dp"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@color/blue_accent"
             android:text="@string/calculate"
             android:textColor="@color/white"
             android:textSize="18sp"/>
     </LinearLayout>
 
 </RelativeLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,8 @@
-package com.app.kot_workout_app.Activities
+package com.app.kot_workout_app.activities
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,13 +11,15 @@ import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.kot_workout_app.Models.ExerciseModel
-import com.app.kot_workout_app.Adapters.ExerciseStatusAdapter
-import com.app.kot_workout_app.Constants.Constants
-import com.app.kot_workout_app.Constants.Constants.Companion.defaultExerciseList
+import com.app.kot_workout_app.models.ExerciseModel
+import com.app.kot_workout_app.adapters.ExerciseStatusAdapter
+import com.app.kot_workout_app.constants.Constants
+import com.app.kot_workout_app.constants.Constants.Companion.defaultExerciseList
 import com.app.kot_workout_app.R
 import com.app.kot_workout_app.databinding.ActivityExerciseBinding
 import com.app.kot_workout_app.databinding.DialogCustomBackConfirmationBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -27,11 +29,11 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var restTimer: CountDownTimer? = null
     private var restProgress = 0
-    private var restTimerDuration: Long = 3 //contador para descanso
+    private var restTimerDuration: Long = 60 //Counter for rest time
 
     private var exerciseTimer: CountDownTimer? = null
     private var exerciseProgress = 0
-    private var exerciseTimerDuration: Long = 5 //contador para ejercicio
+    private var exerciseTimerDuration: Long = 60 //Counter for exercise time
 
     private var exerciseList: ArrayList<ExerciseModel>? = null
     private var currentExercisePosition = -1
@@ -42,18 +44,23 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var exerciseAdapter: ExerciseStatusAdapter? = null
 
     private var mLevel: String? = null
-    private var mLimit: Int = 0
 
     private var currentSeries = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseBinding.inflate(layoutInflater)
-        var view = binding.root
+        val view = binding.root
         setContentView(view)
 
         mLevel = intent.getStringExtra(Constants.LEVELS)
 
+        //ads initialization
+        MobileAds.initialize(this@ExerciseActivity)
+        //Banner ad request
+        val adReq = AdRequest.Builder().build()
+
+        binding.adViewBMI.loadAd(adReq)
         setSupportActionBar(binding.toolbarExerciseActivity)
         val actionbar = supportActionBar
         actionbar?.setDisplayHomeAsUpEnabled(true)
@@ -61,6 +68,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.toolbarExerciseActivity.setNavigationOnClickListener {
             customDialogForBackButton()
         }
+
+
 
         tts = TextToSpeech(this, this)
 
@@ -106,6 +115,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 binding.tvTimer.text = (restTimerDuration - restProgress).toString()
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun onFinish() {
                 currentExercisePosition++
 
@@ -127,6 +137,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 binding.tvExerciseTimer.text = (exerciseTimerDuration-exerciseProgress).toString()
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun onFinish() {
 
                 if(mLevel == "1"){
@@ -142,10 +153,19 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                         startActivity(intent)
                     }
                 } else if(mLevel == "2"){
+                    //Code to reset the recyclerview for the exercise number
+                    if (currentExercisePosition == (exerciseList?.size!! - 1)){
+                        for (i in 0 until exerciseList?.size!!){
+                            exerciseList!![i].setIsCompleted(false)
+                            exerciseList!![i].setIsSelected(false)
+                        }
+                    }
+                    //Code to go through all exercises in exerciseList
                     if (currentExercisePosition < exerciseList?.size!! - 1) {
                         exerciseList!![currentExercisePosition].setIsSelected(false)
                         exerciseList!![currentExercisePosition].setIsCompleted(true)
                         exerciseAdapter!!.notifyDataSetChanged()
+
                         setupRestView()
                     } else{
                         currentSeries++
@@ -160,6 +180,14 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                         }
                     }
                 } else if(mLevel == "3"){
+                    //Code to reset the recyclerview for the exercise number
+                    if (currentExercisePosition == (exerciseList?.size!! - 1)){
+                        for (i in 0 until exerciseList?.size!!){
+                            exerciseList!![i].setIsCompleted(false)
+                            exerciseList!![i].setIsSelected(false)
+                        }
+                    }
+                    //Code to go through all exercises in exerciseList
                     if (currentExercisePosition < exerciseList?.size!! - 1) {
                         exerciseList!![currentExercisePosition].setIsSelected(false)
                         exerciseList!![currentExercisePosition].setIsCompleted(true)
@@ -254,7 +282,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun customDialogForBackButton(){
 
-        //opcion1 con view binding
         val customDialog = Dialog(this)
         val binding: DialogCustomBackConfirmationBinding =
             DialogCustomBackConfirmationBinding.inflate(layoutInflater)
@@ -271,63 +298,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         customDialog.show()
 
-        //opcion 2 con findViewByID
-        //customDialog.setContentView(R.layout.dialog_custom_back_confirmation)
-        //customDialog.findViewById<Button>(R.id.btnYES)
     }
-
-    /*private fun exerciseCounter(){
-        when (currentExercisePosition) {
-            0 -> {
-                binding.tvTextOne.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextTwo.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextThree.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextFour.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextFive.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextSix.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextSeven.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextEight.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextNine.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextTen.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-            }
-            1 -> {
-                binding.tvTextOne.setBackgroundColor(resources.getColor(R.color.blue_accent)
-                binding.tvTextTwo.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextThree.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextFour.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextFive.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextSix.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextSeven.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextEight.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextNine.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-                binding.tvTextTen.setBackgroundColor(resources.getColor(R.color.gray_ripple))
-
-            }
-            2 -> {
-
-            }
-            3 -> {
-
-            }
-            4 -> {
-
-            }
-            5 -> {
-
-            }
-            6 -> {
-
-            }
-            7 -> {
-
-            }
-            8 -> {
-
-            }
-            9 -> {
-
-            }
-        }
-    }*/
 
 }

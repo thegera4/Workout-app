@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".Activities.FinishActivity">
+    tools:context=".activities.FinishActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_finish_activity"
@@ -14,11 +14,19 @@
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/white"/>
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewBMI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-4193581455913262/4352037347"
+        />
+
     <TextView
         android:id="@+id/tvEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:text="END"
         android:textColor="@color/blue_accent"
         android:textSize="35sp"/>

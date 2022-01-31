@@ -1,4 +1,4 @@
-package com.app.kot_workout_app.Adapters
+package com.app.kot_workout_app.adapters
 
 import android.content.Context
 import android.graphics.Color
@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.app.kot_workout_app.Models.ExerciseModel
+import com.app.kot_workout_app.models.ExerciseModel
 import com.app.kot_workout_app.R
 
-class ExerciseStatusAdapter(val items: ArrayList<ExerciseModel>, val context: Context):
+class ExerciseStatusAdapter(private val items: ArrayList<ExerciseModel>, val context: Context):
     RecyclerView.Adapter<ExerciseStatusAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
-        var textViewItem: TextView = view.findViewById(R.id.tvItem)
+        private var textViewItem: TextView = view.findViewById(R.id.tvItem)
 
         val tvItem = textViewItem
     }

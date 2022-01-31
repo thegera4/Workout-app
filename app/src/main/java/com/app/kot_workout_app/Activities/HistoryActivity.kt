@@ -1,12 +1,14 @@
-package com.app.kot_workout_app.Activities
+package com.app.kot_workout_app.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.kot_workout_app.Adapters.HistoryAdapter
-import com.app.kot_workout_app.Database.SqliteOpenHelper
+import com.app.kot_workout_app.adapters.HistoryAdapter
+import com.app.kot_workout_app.database.SqliteOpenHelper
 import com.app.kot_workout_app.databinding.ActivityHistoryBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -24,6 +26,12 @@ class HistoryActivity : AppCompatActivity() {
         binding.toolbarHistoryActivity.setNavigationOnClickListener {
             onBackPressed()
         }
+
+        //ads initialization
+        MobileAds.initialize(this@HistoryActivity)
+        //Banner ad request
+        val adReq = AdRequest.Builder().build()
+        binding.adViewBMI.loadAd(adReq)
 
         getAllCompletedDates()
 

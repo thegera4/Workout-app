@@ -1,10 +1,12 @@
-package com.app.kot_workout_app.Activities
+package com.app.kot_workout_app.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.app.kot_workout_app.Constants.Constants
+import com.app.kot_workout_app.constants.Constants
 import com.app.kot_workout_app.databinding.ActivityMainBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //ads initialization
+        MobileAds.initialize(this@MainActivity)
+        //Banner ad request
+        val adReq = AdRequest.Builder().build()
+        binding.adView.loadAd(adReq)
 
         binding.llStart.setOnClickListener {
             when {

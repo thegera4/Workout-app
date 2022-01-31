@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.MainActivity">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:padding="@dimen/main_screen_main_layout_padding"
         android:background="@color/white">
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-4193581455913262/4352037347"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLevel3"/>
+
+        <!-- Logo image-->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/main_screen_image_height"
             android:contentDescription="@string/image"
-            android:src="@drawable/mainlogo"
-            android:scaleType="fitXY"/>
+            android:src="@drawable/logo"
+            android:scaleType="centerCrop"/>
 
         <!-- Boton Start-->
         <LinearLayout
@@ -42,13 +57,13 @@
 
         </LinearLayout>
 
-        <!-- Linear layout de botones secundarios -->
+        <!-- Linear layout de secondary buttons -->
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:background="@color/white">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/white">
 
             <!-- Boton Calculator -->
             <LinearLayout
@@ -56,22 +71,22 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="center"
-                android:padding="50dp">
-            <LinearLayout
-                android:id="@+id/llBMI"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:background="@drawable/item_circular_color_accent_background"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bmi"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="22sp"/>
-            </LinearLayout>
+                android:padding="30dp">
+                <LinearLayout
+                    android:id="@+id/llBMI"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/item_circular_color_accent_background"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bmi"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="22sp"/>
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -90,19 +105,19 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="center"
-                android:padding="50dp">
-            <LinearLayout
-                android:id="@+id/llHistory"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:background="@drawable/item_circular_color_accent_background"
-                android:gravity="center">
-                <ImageView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/history" />
-            </LinearLayout>
+                android:padding="30dp">
+                <LinearLayout
+                    android:id="@+id/llHistory"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/item_circular_color_accent_background"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/history" />
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -115,7 +130,7 @@
         </LinearLayout>
 
 
-        <!--Radiogroup para seleccion de nivel -->
+        <!--Radio group for level selection -->
         <LinearLayout
             android:id="@+id/llLevel"
             android:layout_width="match_parent"
@@ -168,6 +183,32 @@
                     android:textStyle="bold"
                     android:button="@null"/>
             </RadioGroup>
+
         </LinearLayout>
+
+        <!--Notes for levels -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/level1_note"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/level2_note"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvLevel3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/level3_note"
+            android:gravity="center"
+            android:textStyle="bold"/>
+
     </LinearLayout>
+
+</ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

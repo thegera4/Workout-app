@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">7 Minutes Workout</string>
+    <string name="app_name">1&amp;1 Workout</string>
     <string name="image">Home image</string>
     <string name="start">START</string>
     <string name="congratulations">Congratulations!</string>
@@ -24,4 +24,7 @@
     <string name="level_1">Level 1</string>
     <string name="level_2">Level 2</string>
     <string name="level_3">Level 3</string>
+    <string name="level1_note">Level 1 = 1 set of 10 exercises</string>
+    <string name="level2_note">Level 2 = 2 sets of 10 exercises</string>
+    <string name="level3_note">Level 3 = 3 sets of 10 exercises</string>
 </resources>

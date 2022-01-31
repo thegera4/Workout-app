@@ -1,4 +1,4 @@
-package com.app.kot_workout_app.Adapters
+package com.app.kot_workout_app.adapters
 
 
 import android.content.Context
