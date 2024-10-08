@@ -18,8 +18,6 @@ import com.app.kot_workout_app.constants.Constants.Companion.defaultExerciseList
 import com.app.kot_workout_app.R
 import com.app.kot_workout_app.databinding.ActivityExerciseBinding
 import com.app.kot_workout_app.databinding.DialogCustomBackConfirmationBinding
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -55,12 +53,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         mLevel = intent.getStringExtra(Constants.LEVELS)
 
-        //ads initialization
-        MobileAds.initialize(this@ExerciseActivity)
-        //Banner ad request
-        val adReq = AdRequest.Builder().build()
-
-        binding.adViewBMI.loadAd(adReq)
         setSupportActionBar(binding.toolbarExerciseActivity)
         val actionbar = supportActionBar
         actionbar?.setDisplayHomeAsUpEnabled(true)

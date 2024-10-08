@@ -79,14 +79,6 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adViewBMI"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-4193581455913262/4352037347"
-            />
-
         <!--Text Input Layout for Metric Units Weight -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilMetricUnitWeight"

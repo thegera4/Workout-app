@@ -19,14 +19,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adViewBMI"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-4193581455913262/4352037347"
-            />
-
         <TextView
             android:id="@+id/tvHistory"
             android:layout_width="match_parent"
